@@ -25,46 +25,6 @@ Get-FileHash .\tools\bin\clang-format.exe -Algorithm SHA256
 
 ## Usage
 
-### Format changed files before a PR
-
-From any directory inside a Git repository, run:
-
-```shell
-format-changed
-```
-
-This command uses Env's bundled Python, Git and clang-format. It selects
-unstaged, staged and untracked C/C++ source and header files across the current
-repository. Deleted files, ignored untracked files, symlinks, submodule contents
-and other file types are excluded. It formats the entire selected files, using
-the nearest `.clang-format` or `_clang-format` inside the repository. A missing
-configuration or unresolved merge conflict stops the command before formatting.
-
-The command edits working files only. Review `git diff` and stage the result
-with `git add`, including files that were staged before formatting.
-
-For changes already committed on a PR branch, also include the changes since
-its common ancestor with the target branch:
-
-```shell
-format-changed --base origin/master
-```
-
-Replace `origin/master` with the actual target branch or another local Git ref.
-The command uses local refs and does not fetch from the network.
-
-To check formatting without changing files:
-
-```shell
-format-changed --check
-format-changed --base origin/master --check
-```
-
-A formatting violation or command error returns a nonzero exit code. No changed
-C/C++ files is a successful no-op. Run `format-changed --help` for options.
-
-### Format a specific file
-
 Open an Env terminal and check the bundled version:
 
 ```shell
